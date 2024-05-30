@@ -3,8 +3,8 @@ Vue.createApp({
     data() {
         return {
             addMessage: "",
-            hus: [],
-            hussags: [],                 
+            hus: {}, 
+            hussags: { Id: '', Vej: '', HusNr: '', By: '', pris: '' },                 
         }
 
     },  
@@ -25,12 +25,12 @@ Vue.createApp({
      async getById(id) {              
                 try {
                     const response = await axios.get(baseUrl+id)
-                    this.hus = [response.data]    
-                    this.hussags.Id = this.hus[0].id;
-                    this.hussags.Vej = this.hus[0].vej;
-                    this.hussags.HusNr = this.hus[0].husNr;
-                    this.hussags.By = this.hus[0].by;
-                    this.hussags.pris = this.hus[0].pris;  
+                    this.hus = response.data
+                    this.hussags.Id = this.hus.id;
+                    this.hussags.Vej = this.hus.vej;
+                    this.hussags.HusNr = this.hus.husNr;
+                    this.hussags.By = this.hus.by;
+                    this.hussags.pris = this.hus.pris; 
                     console.log(this.hus)             
                 } catch (ex) {
                     alert(ex.message) 
